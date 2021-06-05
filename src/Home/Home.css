@@ -1,0 +1,16 @@
+.card-style {
+  padding: 20px;
+  border-radius: 20px;
+  /* box-shadow: 4px 3px 2px 4px #ccc; */
+}
+.card-image {
+  background: #9e9e9e4f;
+}
+.card-image img {
+  border-radius: 1em;
+}
+.waves-text {
+  font-size: 28px;
+  font-weight: 700;
+  right: 10px;
+}

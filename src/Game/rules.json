@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Hangman",
+    "objective": "Guess the word/phrase before your man gets hung!",
+    "gameplay": "You will get a word to guess and you get 10 lives to guess it correctly. You can use 2 hints per game. You need to guess a word letter by letter, so whatever you guess just enter that alphabet. With each correct letter that you guess it gets added to the unfilled word, with each wrong letter guess you get closer to death. ",
+    "scoring": "1 point is awarded for each correct guess and 5 bonus points are awarded when complete word is guessed correctly. Scoring remains the same for all levels.",
+    "levels": "There are four levels in the game namely Easy, Medium, Hard, Extreme. Complexity increases at each level.",
+    "trick": "A good acronym to commit to memory is: ETAOIN SHRDLU. It’s hard to pronounce, yes, but its order denotes the most commonly used letters (in order) in the English language."
+  },
+  {
+    "name": "Typing Game",
+    "objective": "Quickly write down the word shown in the empty space before time runs out!",
+    "general": "Challenge your best score as you race to type all letters A-Z as fast as you can. This typing game is bit more challenging, but that's what makes it fun! Your score is not only exponentially affected by typing speed but also by typing accuracy. As a bonus, not only will you improve your typing skills but your vocabulary skills.",
+    "scoring": "1 point is awarded for each correct filled input. Scoring is same for all difficulty levels",
+    "levels": "There are four levels in the game namely Easy, Medium, Hard, Extreme. Complexity increases at each level."
+  }
+]

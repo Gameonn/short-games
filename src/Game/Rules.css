@@ -1,0 +1,15 @@
+.rule-heading {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.rule-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.rule-block {
+  padding: 5px 10px;
+}
+.rule-detail {
+  letter-spacing: 1px;
+  font-size: 14px;
+}
