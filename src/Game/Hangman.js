@@ -14,6 +14,8 @@ class Hangman extends React.Component {
     this.notificationList = React.createRef(null);
     this.word = React.createRef(null);
     this.difficulty = localStorage.getItem("difficulty") || "easy";
+    this.hintCount = 0;
+    this.hintUsed = false;
   }
 
   state = {
@@ -51,18 +53,20 @@ class Hangman extends React.Component {
     this.setState({ wrongLettersDiv: wrongLettersDiv });
     //display parts
     const figureParts = this.figureParts.current?.childNodes;
-    let reducedLives = 0;
-    if (this.difficulty === "extreme") reducedLives = 4;
-    else if (this.difficulty === "hard") reducedLives = 3;
-    else if (this.difficulty === "medium") reducedLives = 1;
-    figureParts.forEach((part, i) => {
-      const errors = this.wrongLetters.length + reducedLives;
-      if (i < errors) part.style.display = "block";
-      else part.style.display = "none";
-    });
+    if (figureParts) {
+      let reducedLives = 0;
+      if (this.difficulty === "extreme") reducedLives = 4;
+      else if (this.difficulty === "hard") reducedLives = 3;
+      else if (this.difficulty === "medium") reducedLives = 1;
+      figureParts.forEach((part, i) => {
+        const errors = this.wrongLetters.length + reducedLives;
+        if (i < errors) part.style.display = "block";
+        else part.style.display = "none";
+      });
 
-    if (this.wrongLetters.length + reducedLives === figureParts.length) {
-      this.gameOver();
+      if (this.wrongLetters.length + reducedLives === figureParts.length) {
+        this.gameOver();
+      }
     }
   };
 
@@ -73,28 +77,33 @@ class Hangman extends React.Component {
       </span>
     ));
     this.setState({ wordDiv: wordDiv });
-    if (this.correctLetters.length) this.updateScore(1);
+    if (this.correctLetters.length && !this.hintUsed) this.updateScore(1);
+    this.hintUsed = false;
     const uniqueListChosenWord = [...new Set(this.state.chosenWord.split(""))];
 
     if (this.correctLetters.length === uniqueListChosenWord.length) {
-      this.showNotification("Congratulations! You Won.");
+      this.showNotification("Congratulations! You Won.", 1);
       this.updateScore(5);
       this.correctLetters = [];
       this.wrongLetters = [];
       this.setWrongLetters();
+      this.hintCount = 0;
       setTimeout(() => {
         this.addWordToDOM();
       }, 2000);
     }
   };
 
-  showNotification(message) {
+  showNotification(message, success) {
     const notificationList = this.notificationList.current;
     if (notificationList) {
+      const colorClass = success ? "green" : "amber";
       notificationList.classList.add("show");
+      notificationList.classList.add(colorClass);
       notificationList.innerText = message;
       setTimeout(() => {
         notificationList.classList.remove("show");
+        notificationList.classList.remove(colorClass);
         notificationList.innerText = "";
       }, 2000);
     }
@@ -109,17 +118,33 @@ class Hangman extends React.Component {
           this.correctLetters.push(letter);
           this.displayWord();
         } else {
-          this.showNotification("You have already entered this letter");
+          this.showNotification("You have already entered this letter", 0);
         }
       } else {
         if (!this.wrongLetters.includes(letter)) {
           this.wrongLetters.push(letter);
           this.setWrongLetters();
         } else {
-          this.showNotification("You have already entered this letter");
+          this.showNotification("You have already entered this letter", 0);
         }
       }
     }
+  };
+
+  hintHandler = () => {
+    if (this.hintCount >= 2) {
+      this.showNotification("You have used all your hints", 0);
+      return;
+    }
+    const uniqueListChosenWord = [...new Set(this.state.chosenWord.split(""))];
+    let wordsLeft = uniqueListChosenWord.filter(
+      (x) => this.correctLetters.indexOf(x) === -1
+    );
+    const letter = wordsLeft[Math.floor(Math.random() * wordsLeft.length)];
+    this.hintCount += 1;
+    this.hintUsed = true;
+    this.correctLetters.push(letter);
+    this.displayWord();
   };
   updateScore(amount) {
     this.setState({ score: this.state.score + amount });
@@ -160,6 +185,7 @@ class Hangman extends React.Component {
           <h6 className="right">
             Score: <strong id="score">{this.state.score}</strong>
           </h6>
+
           <h6>Find the hidden word - Enter a alphabet</h6>
           <div className="game-container z-depth-1">
             <svg
@@ -227,6 +253,14 @@ class Hangman extends React.Component {
             </div>
             <div className="wrong-letters-container">
               <div className="flow-text"> {this.state.wrongLettersDiv} </div>
+            </div>
+            <div className="left">
+              <button
+                className="waves-effect waves-light btn-small"
+                onClick={this.hintHandler}
+              >
+                <i className="material-icons left ">lightbulb_outline</i>Hint
+              </button>
             </div>
           </div>
           <div className="divider"></div>
