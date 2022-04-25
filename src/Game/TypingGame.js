@@ -58,7 +58,7 @@ class TypingGame extends Component {
     if (!scoreObj) scoreObj = { easy: 0, medium: 0, hard: 0, extreme: 0 };
     const oldHighestScore = scoreObj[this.difficulty];
     console.log(oldHighestScore, 'oldHighestScore');
-    if (this.state.score > oldHighestScore) {
+    if (this.state.score >= oldHighestScore) {
       scoreObj[this.difficulty] = this.state.score;
       console.log(scoreObj, 'scoreObj');
       localStorage.setItem("typing-score", JSON.stringify(scoreObj));
@@ -70,7 +70,7 @@ class TypingGame extends Component {
   }
 
   inputHandler = (e) => {
-    const insertedText = e.target.value;
+    const insertedText = e.target.value.toLowerCase();
 
     if (insertedText === this.state.randomWord) {
       this.addWordToDOM();
