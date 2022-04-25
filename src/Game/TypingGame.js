@@ -31,7 +31,9 @@ class TypingGame extends Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerID);
+    clearInterval(this.timeInterval);
+    this.words = [];
+    this.difficulty = "easy";
   }
 
   //add to DOM

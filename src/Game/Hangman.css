@@ -6,7 +6,7 @@
   padding: 20px 30px;
   position: relative;
   margin: 20px auto;
-  height: 350px;
+  height: 360px;
 }
 
 .figure-container {
@@ -51,8 +51,14 @@
   align-items: center;
   justify-content: center;
   margin: 0 3px;
-  height: 50px;
+  height: 40px;
   width: 20px;
+}
+
+@media only screen and (max-width: 400px) {
+  .letter {
+    width: 10px;
+  }
 }
 
 .notification-container {

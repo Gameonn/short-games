@@ -28,6 +28,11 @@ h2 {
   padding: 12px 20px;
   margin-top: 10px;
 }
+@media only screen and (max-width: 400px) {
+  .Game input.answerInput {
+    width: 160px;
+  }
+}
 .Game input.answerInput:focus {
   outline-width: 1px;
   outline-style: auto;
@@ -36,6 +41,12 @@ h2 {
 h3.randomWord {
   font-weight: 500;
   letter-spacing: 2px;
+}
+@media only screen and (max-width: 600px) {
+  h3.randomWord {
+    letter-spacing: 0.5px;
+    font-size: 2.3rem;
+  }
 }
 
 .TimeContainer {
