@@ -54,16 +54,11 @@ class TypingGame extends Component {
 
   gameOver() {
     let scoreObj = JSON.parse(localStorage.getItem("typing-score"));
-    console.log(scoreObj, 'scoreObj');
     if (!scoreObj) scoreObj = { easy: 0, medium: 0, hard: 0, extreme: 0 };
     const oldHighestScore = scoreObj[this.difficulty];
-    console.log(oldHighestScore, 'oldHighestScore');
     if (this.state.score >= oldHighestScore) {
       scoreObj[this.difficulty] = this.state.score;
-      console.log(scoreObj, 'scoreObj');
       localStorage.setItem("typing-score", JSON.stringify(scoreObj));
-
-      console.log(localStorage.getItem("typing-score"), 'typing-score');
     }
 
     this.setState({ gameOver: true });

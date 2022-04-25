@@ -2,12 +2,7 @@ import React from "react";
 import { Redirect, Link } from "react-router-dom";
 
 const gameResult = (props) => {
-  console.log(props.location.state.score, 'score');
-  console.log(props.location.state.scoreType, 'scoreType');
-  console.log(localStorage.getItem(props.location.state.scoreType), 'localstorage scoreType');
-  console.log(localStorage.getItem("difficulty"), 'difficulty');
   let highScore = JSON.parse(localStorage.getItem(props.location.state.scoreType))[localStorage.getItem("difficulty")];
-  console.log(highScore);
   return (
     <div className="row purple lighten-4">
       {props.location.state === undefined ? <Redirect to="/" /> : null}
