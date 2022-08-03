@@ -9,7 +9,8 @@ Kill the keyboard with your fingers to boost in typing game
 
 ### Preview
 
-![image](https://user-images.githubusercontent.com/6601996/182527698-5572a9c2-ce70-421f-9ab0-f53bdf5785ff.png)
+![image](https://user-images.githubusercontent.com/6601996/182528059-85fbf74e-c302-4cbd-8838-a459b9757d3d.png)
+
 
 
 **Play the demo:**
