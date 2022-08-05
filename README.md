@@ -1,6 +1,6 @@
 # Short Games
 Includes 2 games 
-- Hangman and 
+- Hangman
 - Typing Speed
 
 ### Hangman 
